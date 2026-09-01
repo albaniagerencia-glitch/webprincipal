@@ -9,16 +9,117 @@
   <meta name="theme-color" content="#3F6B34" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
 
+  <!-- Página provisional: no indexar hasta publicar el sitio definitivo.
+       Se permite el rastreo (robots.txt abierto) para que los buscadores
+       lean esta directiva y sigan los enlaces salientes. -->
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://albaniarestaurante.com/" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Albania — Restaurante Campestre" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:url" content="https://albaniarestaurante.com/" />
   <meta property="og:title" content="Albania — Restaurante Campestre" />
   <meta property="og:description" content="De nuestra tierra a tu mesa: tradición y sabor sin igual. Nuestro sitio está en construcción — te esperamos en Ginebra y Santa Elena, Valle del Cauca." />
-  <meta property="og:image" content="assets/logo.png" />
+  <meta property="og:image" content="https://albaniarestaurante.com/assets/og-image.jpg" />
+  <meta property="og:image:secure_url" content="https://albaniarestaurante.com/assets/og-image.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Albania — Restaurante Campestre · Ginebra y Santa Elena, Valle del Cauca" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Albania — Restaurante Campestre" />
+  <meta name="twitter:description" content="De nuestra tierra a tu mesa: tradición y sabor sin igual. Ginebra y Santa Elena, Valle del Cauca." />
+  <meta name="twitter:image" content="https://albaniarestaurante.com/assets/og-image.jpg" />
 
   <!-- Tipografía: una sola petición, con respaldo del sistema -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
+
+
+  <!-- Datos estructurados: negocio local con sus dos sedes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://albaniarestaurante.com/#organizacion",
+        "name": "Albania — Restaurante Campestre",
+        "url": "https://albaniarestaurante.com/",
+        "logo": "https://albaniarestaurante.com/assets/logo.png",
+        "image": "https://albaniarestaurante.com/assets/og-image.jpg",
+        "slogan": "De nuestra tierra a tu mesa: tradición y sabor sin igual",
+        "telephone": "+57 311 720 7140",
+        "sameAs": [
+          "https://instagram.com/albaniarestaurante",
+          "https://facebook.com/albania.restaurante"
+        ]
+      },
+      {
+        "@type": "Restaurant",
+        "@id": "https://albaniarestaurante.com/#sede-ginebra",
+        "name": "Albania — Restaurante Campestre · Sede Ginebra",
+        "parentOrganization": { "@id": "https://albaniarestaurante.com/#organizacion" },
+        "url": "https://albaniarestaurante.com/",
+        "image": "https://albaniarestaurante.com/assets/og-image.jpg",
+        "servesCuisine": ["Colombiana", "Vallecaucana", "Comida típica"],
+        "priceRange": "$$",
+        "telephone": "+57 311 720 7140",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Km 2 Vía a Ginebra, Costa Rica",
+          "addressLocality": "Ginebra",
+          "addressRegion": "Valle del Cauca",
+          "addressCountry": "CO"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "11:00",
+            "closes": "17:30"
+          }
+        ],
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Pet-friendly", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Zona de juegos infantil", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Salón de eventos", "value": true }
+        ]
+      },
+      {
+        "@type": "Restaurant",
+        "@id": "https://albaniarestaurante.com/#sede-santa-elena",
+        "name": "Albania — Restaurante Campestre · Sede Santa Elena",
+        "parentOrganization": { "@id": "https://albaniarestaurante.com/#organizacion" },
+        "url": "https://albaniarestaurante.com/",
+        "image": "https://albaniarestaurante.com/assets/og-image.jpg",
+        "servesCuisine": ["Colombiana", "Vallecaucana", "Comida típica"],
+        "priceRange": "$$",
+        "telephone": "+57 311 720 7140",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Km 5 Vía Amaime",
+          "addressLocality": "El Cerrito",
+          "addressRegion": "Valle del Cauca",
+          "addressCountry": "CO"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Friday","Saturday","Sunday"],
+            "opens": "11:00",
+            "closes": "17:30"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="styles.css" />
 </head>

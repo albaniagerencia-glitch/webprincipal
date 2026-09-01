@@ -1,0 +1,9 @@
+# https://albaniarestaurante.com/robots.txt
+# Sitio en construcción: el rastreo queda ABIERTO a propósito para que los
+# buscadores puedan leer la etiqueta <meta name="robots" content="noindex">
+# de index.html. Bloquear aquí impediría que vieran esa directiva.
+# Al publicar el sitio definitivo: quitar el noindex del HTML y añadir el
+# Sitemap correspondiente en este archivo.
+
+User-agent: *
+Allow: /
