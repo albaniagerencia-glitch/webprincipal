@@ -330,3 +330,122 @@ a:focus-visible,
   .wa-float { animation: none; }
   * { transition: none !important; }
 }
+
+/* ---------- Directorio de contacto (acordeón nativo <details>) ---------- */
+.dir-intro {
+  font-size: .97rem;
+  color: var(--tinta-suave);
+  max-width: 48ch;
+  margin: 0 auto 1.4rem;
+}
+
+.dir-acc {
+  max-width: 560px;
+  margin: 0 auto 10px;
+  text-align: left;
+  background: var(--crema-clara);
+  border: 1px solid rgba(90, 70, 54, .24);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dir-sum {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 13px 16px;
+  list-style: none;
+  user-select: none;
+  transition: background .18s ease;
+}
+.dir-sum::-webkit-details-marker { display: none; }
+.dir-sum:hover { background: rgba(111, 143, 79, .12); }
+.dir-sum:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: -3px;
+}
+
+.dir-sum-txt {
+  flex: 1 1 auto;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--verde-osc);
+}
+
+.dir-count {
+  flex: 0 0 auto;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--mostaza-osc);
+  background: rgba(207, 154, 58, .16);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.dir-chev {
+  flex: 0 0 auto;
+  color: var(--terracota);
+  transition: transform .22s ease;
+}
+.dir-acc[open] .dir-chev { transform: rotate(180deg); }
+
+.dir-acc[open] .dir-sum {
+  border-bottom: 1px dashed rgba(90, 70, 54, .3);
+}
+
+.dir-list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 16px 16px;
+  display: grid;
+  gap: 10px;
+  animation: desplegar .24s ease both;
+}
+
+@keyframes desplegar {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dir-list li {
+  background: var(--crema-panel);
+  border: 1px solid rgba(90, 70, 54, .18);
+  border-left: 3px solid var(--verde-claro);
+  border-radius: 10px;
+  padding: 11px 14px;
+}
+
+.dir-mail {
+  display: block;
+  font-weight: 700;
+  font-size: .94rem;
+  color: var(--verde-osc);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .18s ease;
+}
+.dir-mail:hover,
+.dir-mail:focus-visible { color: var(--terracota); text-decoration: underline; }
+
+.dir-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dir-chev { transition: none; }
+  .dir-list { animation: none; }
+}
+
+@media (max-width: 420px) {
+  .dir-sum-txt { font-size: .93rem; }
+  .dir-count   { display: none; }
+  .dir-mail    { font-size: .86rem; }
+  .dir-desc    { font-size: .85rem; }
+}
