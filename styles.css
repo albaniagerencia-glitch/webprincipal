@@ -1,0 +1,332 @@
+/* =========================================================
+   Albania — Restaurante Campestre
+   Página "en construcción" · estética campestre / rústica
+   ========================================================= */
+
+:root {
+  /* Paleta en tonos tierra (referencia: logo Albania) */
+  --crema:        #f6efdd;
+  --crema-clara:  #fbf6ea;
+  --crema-panel:  #fdf9ef;
+  --verde:        #3f6b34;
+  --verde-osc:    #2c4a26;
+  --verde-claro:  #6f8f4f;
+  --terracota:    #a83a2c;
+  --terracota-osc:#8a2f24;
+  --mostaza:      #cf9a3a;
+  --mostaza-osc:  #b07f26;
+  --marron:       #5a4636;
+  --tinta:        #3a2c1f;
+  --tinta-suave:  #6b5744;
+
+  --wa:           #25d366;
+  --wa-osc:       #1da851;
+
+  --sombra:       0 18px 40px -18px rgba(58, 44, 31, .45);
+  --radio:        18px;
+
+  --fuente-titulo: "Fraunces", "Georgia", "Times New Roman", serif;
+  --fuente-texto:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  color: var(--tinta);
+  line-height: 1.6;
+  background-color: #e7dabc;
+  /* Textura de papel + tenue trama botánica, todo en data-URI (sin peticiones extra) */
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, .35), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(63, 107, 52, .16), transparent 50%),
+    linear-gradient(180deg, #ece0c4 0%, #e3d4b3 55%, #d8c69f 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%235a4636' stroke-opacity='0.06' stroke-width='1.4'%3E%3Cpath d='M20 110c14-6 20-22 18-40M20 110c-10-10-10-28 0-40M20 110c14 4 30-4 40-18'/%3E%3Cpath d='M110 34c-10 4-15 16-13 29M110 34c7 7 8 20 1 29M110 34c-10-3-22 3-29 13'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: auto, auto, auto, 260px 260px;
+}
+
+/* ---------- Disposición general ---------- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 5vw, 60px) clamp(14px, 4vw, 40px);
+}
+
+.card {
+  width: 100%;
+  max-width: 680px;
+  background: var(--crema-panel);
+  border-radius: var(--radio);
+  padding: clamp(28px, 6vw, 56px) clamp(22px, 6vw, 60px) clamp(24px, 5vw, 44px);
+  text-align: center;
+  box-shadow: var(--sombra);
+  /* Marco rústico de doble línea */
+  border: 1px solid rgba(90, 70, 54, .35);
+  outline: 6px solid var(--crema-panel);
+  outline-offset: -14px;
+  position: relative;
+  animation: aparecer .7s ease both;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1.5px solid rgba(168, 58, 44, .35);
+  border-radius: calc(var(--radio) - 6px);
+  pointer-events: none;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  width: clamp(170px, 42vw, 240px);
+  height: auto;
+  margin: 0 auto clamp(10px, 3vw, 18px);
+  display: block;
+}
+
+/* ---------- Encabezado ---------- */
+.kicker {
+  margin: 0 0 .5rem;
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--mostaza-osc);
+}
+
+.title {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: clamp(2rem, 7vw, 3.05rem);
+  line-height: 1.12;
+  margin: .2rem 0 .5rem;
+  color: var(--verde-osc);
+  letter-spacing: .01em;
+}
+
+.slogan {
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 3.6vw, 1.4rem);
+  color: var(--terracota);
+  margin: 0 0 1.1rem;
+}
+
+/* ---------- Ramita divisoria ---------- */
+.sprig {
+  display: block;
+  color: var(--verde-claro);
+  margin: .6rem auto 1.3rem;
+}
+.sprig svg { display: block; margin: 0 auto; }
+
+/* ---------- Párrafos ---------- */
+.lede {
+  font-size: 1.02rem;
+  color: var(--tinta-suave);
+  max-width: 46ch;
+  margin: 0 auto .85rem;
+}
+.lede strong { color: var(--terracota-osc); }
+
+.legacy {
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3.4vw, 1.35rem);
+  color: var(--marron);
+  margin: 1.4rem auto 0;
+  padding-top: 1.1rem;
+  border-top: 1px dashed rgba(90, 70, 54, .35);
+  max-width: 34ch;
+}
+
+/* ---------- Secciones ---------- */
+.section-label {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--verde-osc);
+  margin: 2rem 0 .9rem;
+}
+
+/* Sedes */
+.sedes {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  max-width: 520px;
+}
+.sede {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  background: var(--crema-clara);
+  border: 1px solid rgba(90, 70, 54, .22);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.sede .pin { color: var(--terracota); flex: 0 0 auto; margin-top: 2px; }
+.sede-name {
+  display: block;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--verde-osc);
+}
+.sede-addr {
+  display: block;
+  font-size: .93rem;
+  color: var(--tinta-suave);
+}
+
+/* Pastillas (experiencia / servicios) */
+.pills {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  max-width: 560px;
+}
+.pills li {
+  background: var(--verde);
+  color: #fff;
+  font-size: .88rem;
+  padding: 7px 14px;
+  border-radius: 999px;
+  line-height: 1.35;
+}
+.pills--soft li {
+  background: transparent;
+  color: var(--marron);
+  border: 1px solid var(--mostaza);
+}
+
+/* ---------- Redes ---------- */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 2.1rem 0 1rem;
+}
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--crema-clara);
+  border: 1px solid rgba(90, 70, 54, .28);
+  color: var(--marron);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .92rem;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.social-btn svg { color: var(--terracota); }
+.social-btn:hover,
+.social-btn:focus-visible {
+  background: var(--verde);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.social-btn:hover svg,
+.social-btn:focus-visible svg { color: #fff; }
+
+/* ---------- CTA WhatsApp ---------- */
+.wa-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: .6rem;
+  padding: 13px 26px;
+  border-radius: 999px;
+  background: var(--wa);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 12px 24px -10px rgba(37, 211, 102, .7);
+  transition: transform .15s ease, background .15s ease;
+}
+.wa-cta:hover,
+.wa-cta:focus-visible { background: var(--wa-osc); transform: translateY(-2px); }
+
+/* ---------- Pie ---------- */
+.foot {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(90, 70, 54, .22);
+  font-size: .86rem;
+  color: var(--tinta-suave);
+}
+.foot p { margin: .25rem 0; }
+.foot a { color: var(--terracota-osc); text-decoration: none; font-weight: 600; }
+.foot a:hover { text-decoration: underline; }
+.foot .copy { font-size: .8rem; opacity: .8; }
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.wa-float {
+  position: fixed;
+  right: clamp(14px, 4vw, 28px);
+  bottom: clamp(14px, 4vw, 28px);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--wa);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px -6px rgba(0, 0, 0, .4);
+  z-index: 50;
+  transition: transform .18s ease, background .18s ease;
+  animation: latido 2.6s ease-in-out infinite;
+}
+.wa-float:hover,
+.wa-float:focus-visible { background: var(--wa-osc); transform: scale(1.08); }
+
+@keyframes latido {
+  0%, 100% { box-shadow: 0 10px 26px -6px rgba(0, 0, 0, .4), 0 0 0 0 rgba(37, 211, 102, .5); }
+  50%      { box-shadow: 0 10px 26px -6px rgba(0, 0, 0, .4), 0 0 0 14px rgba(37, 211, 102, 0); }
+}
+
+/* ---------- Utilidades / responsive ---------- */
+.only-mobile { display: none; }
+
+@media (max-width: 480px) {
+  .only-mobile { display: inline; }
+  .social { gap: 9px; }
+  .social-btn { width: 100%; justify-content: center; }
+}
+
+a:focus-visible,
+.wa-float:focus-visible {
+  outline: 3px solid var(--mostaza);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+  .wa-float { animation: none; }
+  * { transition: none !important; }
+}
