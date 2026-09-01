@@ -330,3 +330,70 @@ a:focus-visible,
   .wa-float { animation: none; }
   * { transition: none !important; }
 }
+
+/* ---------- Directorio de contacto ---------- */
+.dir-intro {
+  font-size: .97rem;
+  color: var(--tinta-suave);
+  max-width: 48ch;
+  margin: 0 auto 1.4rem;
+}
+
+.dir-group {
+  margin: 0 auto 1.35rem;
+  max-width: 560px;
+  text-align: left;
+}
+
+.dir-title {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mostaza-osc);
+  margin: 0 0 .6rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px dashed rgba(90, 70, 54, .3);
+}
+
+.dir-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.dir-list li {
+  background: var(--crema-clara);
+  border: 1px solid rgba(90, 70, 54, .22);
+  border-left: 3px solid var(--verde-claro);
+  border-radius: 10px;
+  padding: 11px 14px;
+}
+
+.dir-mail {
+  display: block;
+  font-weight: 700;
+  font-size: .94rem;
+  color: var(--verde-osc);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .18s ease;
+}
+.dir-mail:hover,
+.dir-mail:focus-visible { color: var(--terracota); text-decoration: underline; }
+
+.dir-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 420px) {
+  .dir-mail { font-size: .88rem; }
+  .dir-desc { font-size: .85rem; }
+}
