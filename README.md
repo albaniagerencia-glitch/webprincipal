@@ -32,9 +32,15 @@ netlify.toml                      Publicación, redirecciones y cabeceras
 
 ## Decisiones técnicas
 
-- **Sin JavaScript obligatorio.** Solo la página de reserva usa JS, y su única
-  función es componer el texto del mensaje. Todo lo demás (menú móvil,
-  acordeón del directorio) funciona con HTML y CSS puros.
+- **Sin JavaScript obligatorio.** Solo la página de reserva y la portada usan
+  JS, y ninguna de las dos lo necesita para mostrar su contenido. Todo lo demás
+  (menú móvil, acordeón del directorio) funciona con HTML y CSS puros.
+- **Portada en video** (`assets/hero.webm` + `assets/hero.mp4`, 6 s, ~570 KB):
+  un bucle sin costura de tomas aéreas, mudo y decorativo. La foto
+  (`assets/hero-poster.webp`) se pinta de inmediato y el video entra encima
+  solo cuando está listo. No se descarga un solo byte de video si el visitante
+  activó `prefers-reduced-motion` o va en ahorro de datos / 2G-3G, y siempre
+  hay un botón de pausa (WCAG 2.2.2). Se detiene solo al ocultar la pestaña.
 - **Imágenes en WebP**, redimensionadas al tamaño de uso real, con `width` y
   `height` declarados y `loading="lazy"` fuera de la primera pantalla.
   El sitio completo pesa ~3,6 MB, contra los ~2 MB de CSS y JS que carga

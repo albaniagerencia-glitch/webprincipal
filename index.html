@@ -210,9 +210,21 @@
   </header>
 
   <main id="contenido">
-    <section class="portada">
-      <img src="assets/hero-1.webp" width="1800" height="586" fetchpriority="high" decoding="async"
-           alt="Casona campestre de Albania en Ginebra junto a un sancocho de gallina servido en olla de barro" />
+    <section class="portada portada--video">
+      <img class="portada-media portada-respaldo" src="assets/hero-poster.webp" width="1280" height="496"
+           fetchpriority="high" decoding="async"
+           alt="Vista aerea de la casona campestre de Albania rodeada de arboles, en Ginebra, Valle del Cauca" />
+      <video class="portada-media portada-video" id="video-portada"
+             muted loop playsinline preload="none" tabindex="-1"
+             poster="assets/hero-poster.webp" width="1280" height="496" aria-hidden="true">
+        <source src="assets/hero.webm" type="video/webm" />
+        <source src="assets/hero.mp4" type="video/mp4" />
+      </video>
+      <button class="portada-control" id="control-video" type="button" hidden
+              aria-label="Pausar el video de fondo">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></svg>
+        <span>Pausar</span>
+      </button>
       <div class="portada-velo">
         <div class="envoltura">
           <div class="portada-txt">
@@ -357,6 +369,54 @@
         </div>
       </div>
     </section>
+
+    <script>
+    (function () {
+      var v = document.getElementById('video-portada');
+      var btn = document.getElementById('control-video');
+      if (!v || !btn) return;
+
+      var sinMovimiento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var con = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var ahorroDatos = !!(con && (con.saveData || /^([23]g|slow-2g)$/.test(con.effectiveType || '')));
+
+      // Menos movimiento o conexion lenta: se queda la foto y no se descarga video.
+      if (sinMovimiento || ahorroDatos) return;
+
+      var ICONO_PAUSA = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></svg>';
+      var ICONO_PLAY  = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>';
+      var reproduciendo = false;
+
+      function pinta(activo) {
+        reproduciendo = activo;
+        btn.innerHTML = (activo ? ICONO_PAUSA : ICONO_PLAY) +
+          '<span>' + (activo ? 'Pausar' : 'Reproducir') + '</span>';
+        btn.setAttribute('aria-label', (activo ? 'Pausar' : 'Reproducir') + ' el video de fondo');
+      }
+
+      v.preload = 'auto';
+      v.load();
+
+      v.addEventListener('playing', function () {
+        v.classList.add('visible');
+        btn.hidden = false;
+        pinta(true);
+      }, { once: true });
+
+      var intento = v.play();
+      if (intento && intento.catch) { intento.catch(function () {}); }
+
+      btn.addEventListener('click', function () {
+        if (v.paused) { v.play(); pinta(true); } else { v.pause(); pinta(false); }
+      });
+
+      // Sin gastar bateria ni datos con la pestana en segundo plano.
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { v.pause(); }
+        else if (reproduciendo) { v.play(); }
+      });
+    })();
+    </script>
   </main>
 
   <footer class="pie">

@@ -421,3 +421,44 @@ fieldset { border: 0; padding: 0; margin: 0 0 18px; }
   body { background: #fff; }
   .seccion { padding: 0; }
 }
+
+
+/* =========================================================
+   Portada en video — decorativa: muda, en bucle, con foto
+   inmediata debajo y control de pausa siempre disponible.
+   ========================================================= */
+.portada--video { position: relative; }
+.portada--video .portada-media {
+  width: 100%;
+  height: clamp(320px, 52vw, 520px);
+  object-fit: cover;
+  display: block;
+}
+/* El video se monta sobre la foto; si no arranca, queda la foto. */
+.portada--video .portada-video {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity .6s ease;
+  background: #22331c;
+}
+.portada--video .portada-video.visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .portada--video .portada-video { transition: none; }
+}
+.portada--video .portada-velo { z-index: 2; }
+
+.portada-control {
+  position: absolute; right: 16px; bottom: 16px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  font: inherit; font-size: .82rem; font-weight: 600;
+  color: var(--crema-panel); background: rgba(28, 42, 22, .55);
+  border: 1px solid rgba(253, 249, 239, .45);
+  backdrop-filter: blur(6px);
+  transition: background .18s ease;
+}
+.portada-control:hover { background: rgba(28, 42, 22, .82); }
+.portada-control:focus-visible { outline: 2px solid var(--crema-panel); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .portada-control { right: 12px; bottom: 12px; padding: 7px 12px; font-size: .78rem; }
+}
+@media print { .portada-control { display: none !important; } }
