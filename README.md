@@ -1,42 +1,67 @@
-# Albania — Restaurante Campestre · Sitio "en construcción"
+# Albania — Restaurante Campestre · albaniarestaurante.com
 
-Página estática de una sola pantalla ("estamos preparando algo especial") para
-Albania — Restaurante Campestre (Valle del Cauca, Colombia).
+Sitio estático (sin build, sin frameworks, sin dependencias) del Restaurante
+Albania Campestre — Ginebra y Santa Elena, Valle del Cauca.
 
-## Contenido
+Reconstrucción limpia del contenido que hoy vive en `albaniarestaurante.co`
+(WordPress + Elementor + BookingPress), con tres diferencias de fondo:
+
+1. **La carta es texto**, no imágenes: indexable por Google, legible por
+   lectores de pantalla y reutilizable por el bot de WhatsApp.
+2. **Precios de la carta de diciembre de 2025** (los del `.co` son de junio de
+   2025 y están entre 8 % y 12 % por debajo).
+3. **Las reservas se gestionan por WhatsApp**, no con un motor de citas: el
+   formulario arma el mensaje y lo abre en WhatsApp. No hay backend, no hay
+   datos almacenados en el navegador.
+
+## Estructura
 
 ```
-index.html      Página principal (HTML semántico, en español)
-styles.css      Estilos — estética campestre/rústica, tonos tierra, responsive
-assets/logo.png Logo de Albania (copia local, no se enlaza al dominio original)
+index.html                        Inicio
+menu/index.html                   Carta completa con precios
+eventos/index.html                Eventos, bodas, empresariales, recorrido
+quienes-somos/index.html          Historia y propuesta
+reserva/index.html                Formulario → mensaje de WhatsApp
+terminos-y-condiciones/index.html Condiciones de reserva
+404.html                          Página de error
+styles.css                        Hoja de estilos única de todo el sitio
+assets/                           Logo, imagen social y 37 fotos en WebP
+sitemap.xml · robots.txt          SEO
+netlify.toml                      Publicación, redirecciones y cabeceras
 ```
 
-- Sin frameworks ni build. Solo se carga una fuente de Google Fonts
-  (*Fraunces*) con respaldo del sistema; el resto (textura de fondo, iconos
-  de Instagram / Facebook / WhatsApp) va embebido como SVG / data-URI.
-- JavaScript mínimo: una línea para el año del pie de página.
-- Botón flotante de WhatsApp a `wa.me/573117207140`.
+## Decisiones técnicas
 
-## Publicar
+- **Sin JavaScript obligatorio.** Solo la página de reserva usa JS, y su única
+  función es componer el texto del mensaje. Todo lo demás (menú móvil,
+  acordeón del directorio) funciona con HTML y CSS puros.
+- **Imágenes en WebP**, redimensionadas al tamaño de uso real, con `width` y
+  `height` declarados y `loading="lazy"` fuera de la primera pantalla.
+  El sitio completo pesa ~3,6 MB, contra los ~2 MB de CSS y JS que carga
+  Elementor en el `.co` antes de mostrar una sola foto.
+- **Datos estructurados** (`schema.org`): `Organization`, un `Restaurant` por
+  sede con horarios y aforo, el `Menu` completo con precios y una
+  `ReserveAction`.
+- **Reglas de negocio en el formulario de reserva**, que el sistema actual del
+  `.co` no aplica: fecha mínima 24 h, franja 11:00 a. m. – 4:30 p. m., aviso
+  cuando se pide Santa Elena entre semana (abre de viernes a domingo) y aviso
+  de condiciones de evento a partir de 20 personas.
 
-Sube el contenido de esta carpeta tal cual a cualquier hosting estático
-(Netlify, Vercel, GitHub Pages, Cloudflare Pages, hosting cPanel, etc.).
-La raíz del sitio debe servir `index.html`.
+## Estado
 
-### Prueba local
+Todas las páginas llevan `<meta name="robots" content="noindex, follow">`.
+**Se levanta el `noindex` cuando el restaurante confirme por escrito la carta
+vigente**, ya que publicar precios equivocados es un riesgo comercial y legal.
+`robots.txt` ya queda configurado para ese momento.
 
-```bash
-python3 -m http.server 8000
-# abre http://localhost:8000
-```
+## Publicación
 
-## Datos incluidos
+`publish = "."` en `netlify.toml`: se sirve la raíz del repositorio, sin
+compilación. Un `push` a `main` redespliega el sitio en menos de 80 segundos.
 
-- **Sedes:** Ginebra (Km 2 Vía a Ginebra, Costa Rica) · Santa Elena
-  (Km. 5 Vía Amaime, El Cerrito).
-- **Contacto:** Tel./WhatsApp (+57) 311 720 7140 ·
-  Instagram [@albaniarestaurante](https://instagram.com/albaniarestaurante) ·
-  Facebook [albania.restaurante](https://facebook.com/albania.restaurante).
+## Regenerar
 
-Para cambiar textos o direcciones, edita directamente `index.html`.
-Los colores están centralizados en las variables `:root` de `styles.css`.
+Las páginas se generan con los scripts `_build.py`, `_datos_menu.py`,
+`_paginas.py` y `_paginas2.py` (no versionados en este repositorio). La carta
+vive en `_datos_menu.py`: al cambiar un precio ahí, se regeneran el HTML y los
+datos estructurados en un solo paso.

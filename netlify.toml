@@ -1,6 +1,33 @@
-# Sitio estático sin proceso de build: se publica la raíz del repo tal cual.
+# Publicación estática: sin build, se sirve la raíz del repositorio.
 [build]
   publish = "."
+  command = ""
+
+# Rutas heredadas del sitio anterior (albaniarestaurante.co) y variantes comunes.
+[[redirects]]
+  from = "/reservas"
+  to = "/reserva/"
+  status = 301
+[[redirects]]
+  from = "/inicio"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/nosotros"
+  to = "/quienes-somos/"
+  status = 301
+[[redirects]]
+  from = "/carta"
+  to = "/menu/"
+  status = 301
+[[redirects]]
+  from = "/thank-you"
+  to = "/reserva/"
+  status = 301
+[[redirects]]
+  from = "/my-bookings"
+  to = "/reserva/"
+  status = 301
 
 [[headers]]
   for = "/*"
@@ -8,8 +35,14 @@
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
