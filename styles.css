@@ -462,3 +462,7 @@ fieldset { border: 0; padding: 0; margin: 0 0 18px; }
   .portada-control { right: 12px; bottom: 12px; padding: 7px 12px; font-size: .78rem; }
 }
 @media print { .portada-control { display: none !important; } }
+/* Celular: la portada crece para que el titulo y los botones no queden recortados. */
+@media (max-width: 600px) {
+  .portada--video .portada-media { height: 440px; }
+}
