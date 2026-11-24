@@ -32,6 +32,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- NAVIDAD: hoja temporal (retirar en enero, ver README) -->
+  <link rel="stylesheet" href="navidad.css" />
 
   <script type="application/ld+json">
 {
@@ -186,8 +188,16 @@
 }
   </script>
 </head>
-<body>
+<body class="modo-navidad">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <!-- NAVIDAD:INICIO franja -->
+  <aside class="nav-franja" aria-label="Temporada navideña">
+    <div class="envoltura nav-franja-int">
+      <p class="nav-franja-txt" style="margin:0"><svg class="nav-franja-estrella" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg><strong>¡Feliz Navidad!</strong> <span class="nav-franja-largo">Reserva tu cena de fin de año o tu evento navideño con nosotros.</span></p>
+      <a class="nav-franja-btn" href="https://wa.me/573117207140?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20reservar%20una%20cena%20de%20fin%20de%20a%C3%B1o%20o%20un%20evento%20navide%C3%B1o%20en%20Albania." target="_blank" rel="noopener" aria-label="Reservar por WhatsApp (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 6.9 12.6l-.2.3.8 2.8-2.9-.8-.3.2A8.2 8.2 0 1 1 12 3.8z"/></svg>Reservar<span class="nav-franja-btn-largo">&nbsp;por WhatsApp</span></a>
+    </div>
+  </aside>
+  <!-- NAVIDAD:FIN franja -->
   <header class="cabecera">
     <div class="envoltura cabecera-int">
       <a class="marca" href="/" aria-label="Albania — Restaurante Campestre, inicio">
@@ -211,6 +221,9 @@
 
   <main id="contenido">
     <section class="portada portada--video">
+      <!-- NAVIDAD:INICIO guirnalda -->
+      <div class="nav-guirnalda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <!-- NAVIDAD:FIN guirnalda -->
       <img class="portada-media portada-respaldo" src="assets/hero-poster.webp" width="1280" height="496"
            fetchpriority="high" decoding="async"
            alt="Vista aerea de la casona campestre de Albania rodeada de arboles, en Ginebra, Valle del Cauca" />
@@ -238,6 +251,28 @@
         </div>
       </div>
     </section>
+
+    <!-- NAVIDAD:INICIO temporada -->
+    <section class="seccion nav-temporada" id="temporada-navidena" aria-labelledby="titulo-temporada">
+      <div class="envoltura centrado">
+        <p class="rotulo">Temporada navideña</p>
+        <h2 class="titulo-seccion" id="titulo-temporada">Esta Navidad, la mesa se pone en el campo</h2>
+        <span class="nav-ramas"><svg viewBox="0 0 140 28" width="140" height="28" aria-hidden="true"><path d="M8 14h44M132 14H88" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M60 14c-6-7-14-8-20-5 5 1 9 3 11 5-2 2-6 4-11 5 6 3 14 2 20-5zM80 14c6-7 14-8 20-5-5 1-9 3-11 5 2 2 6 4 11 5-6 3-14 2-20-5z" fill="currentColor"/><circle cx="70" cy="11" r="3.6" fill="#a83a2c"/><circle cx="66" cy="17" r="3.2" fill="#a83a2c"/><circle cx="74" cy="17" r="3.2" fill="#8a2f24"/></svg></span>
+        <p class="entradilla">Diciembre sabe a familia, a fogón de leña y a reencuentros. Celebra con nosotros en Ginebra o en Santa Elena, rodeado de naturaleza y de la sazón de siempre: el plan para reunir a los tuyos antes de cerrar el año.</p>
+        <ul class="nav-motivos">
+          <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>Reuniones familiares</li>
+          <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>Cenas de fin de año</li>
+          <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>Fiestas de empresa</li>
+          <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>Grupos y celebraciones</li>
+        </ul>
+        <div class="acciones">
+          <a class="btn btn-wa btn-grande" href="https://wa.me/573117207140?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20reservar%20una%20cena%20de%20fin%20de%20a%C3%B1o%20o%20un%20evento%20navide%C3%B1o%20en%20Albania." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 6.9 12.6l-.2.3.8 2.8-2.9-.8-.3.2A8.2 8.2 0 1 1 12 3.8z"/></svg> Consultar por WhatsApp</a>
+          <a class="btn btn-secundario btn-grande" href="/reserva/">Reservar mesa</a>
+        </div>
+        <p class="nav-nota">Escríbenos y te contamos fechas disponibles, horarios y opciones para tu celebración.</p>
+      </div>
+    </section>
+    <!-- NAVIDAD:FIN temporada -->
 
     <section class="seccion">
       <div class="envoltura centrado">
@@ -501,5 +536,7 @@
   </a>
 
   <script>document.getElementById('anio').textContent = new Date().getFullYear();</script>
+  <!-- NAVIDAD: script temporal (retirar en enero, ver README) -->
+  <script src="navidad.js" defer></script>
 </body>
 </html>

@@ -65,6 +65,33 @@ vigente**, ya que publicar precios equivocados es un riesgo comercial y legal.
 `publish = "."` en `netlify.toml`: se sirve la raíz del repositorio, sin
 compilación. Un `push` a `main` redespliega el sitio en menos de 80 segundos.
 
+## Modo navidad (temporal, temporada 2026)
+
+Decoración de temporada solo en el inicio (`index.html`), sin librerías
+externas y fácil de retirar:
+
+- `navidad.css`: franja superior, guirnalda de luces en la portada, destellos
+  y la sección «Temporada navideña». Todo cuelga de `body.modo-navidad`.
+- `navidad.js` (~1,7 KB): crea los destellos sobre la portada. No hace nada
+  si el visitante pidió menos movimiento (`prefers-reduced-motion`) o va en
+  ahorro de datos. El video de la portada no se toca.
+- En `index.html` cada bloque está entre marcas `<!-- NAVIDAD:INICIO … -->` y
+  `<!-- NAVIDAD:FIN … -->`, más dos líneas marcadas `<!-- NAVIDAD: … -->`.
+- Los botones llevan al WhatsApp de siempre (+57 311 720 7140) con un mensaje
+  prellenado de reserva navideña, y a `/reserva/`. No se publican precios,
+  menús ni fechas: se invita a consultar por WhatsApp.
+
+**Retirarlo en enero** (2 minutos):
+
+1. Borrar `navidad.css` y `navidad.js`.
+2. En `index.html`: quitar `class="modo-navidad"` del `<body>`, las dos líneas
+   marcadas `<!-- NAVIDAD: … -->` con su `<link>`/`<script>` y los tres bloques
+   entre `NAVIDAD:INICIO` y `NAVIDAD:FIN` (franja, guirnalda, temporada).
+3. Comprobar: `grep -c NAVIDAD index.html` debe dar `0`.
+
+Si se regenera `index.html` con los scripts de abajo, los bloques navideños se
+pierden: hay que volver a insertarlos (o regenerar ya en enero, sin ellos).
+
 ## Regenerar
 
 Las páginas se generan con los scripts `_build.py`, `_datos_menu.py`,

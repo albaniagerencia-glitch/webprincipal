@@ -1,0 +1,158 @@
+/* =========================================================
+   MODO NAVIDAD 2026 · albaniarestaurante.com
+   Temporal. Todo vive bajo body.modo-navidad.
+   Para retirarlo en enero ver README.md, «Modo navidad».
+   Sin librerias externas; usa la paleta de styles.css.
+   ========================================================= */
+
+body.modo-navidad {
+  --nav-oro:   #e9b65a;
+  --nav-brillo: rgba(233, 182, 90, .55);
+}
+
+/* ---------- Franja superior ---------- */
+.modo-navidad .nav-franja {
+  position: relative; z-index: 101;
+  background:
+    linear-gradient(90deg, rgba(168,58,44,.0), rgba(168,58,44,.35) 50%, rgba(168,58,44,0)),
+    var(--verde-osc);
+  color: var(--crema-clara);
+  border-bottom: 1px solid rgba(233, 182, 90, .45);
+  font-size: .92rem; line-height: 1.35;
+}
+.modo-navidad .nav-franja-int {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px 16px; flex-wrap: wrap;
+  padding-top: 8px; padding-bottom: 8px; text-align: center;
+}
+.modo-navidad .nav-franja-txt { text-wrap: balance; }
+.modo-navidad .nav-franja-txt strong {
+  font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.02rem;
+  color: var(--nav-oro); letter-spacing: .01em;
+}
+.modo-navidad .nav-franja-estrella {
+  display: inline-block; vertical-align: -2px; margin-right: 6px; color: var(--nav-oro);
+}
+.modo-navidad .nav-franja-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 36px; padding: 6px 14px; border-radius: 999px;
+  background: var(--crema-panel); color: var(--verde-osc);
+  font-weight: 700; font-size: .86rem; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 0 0 1px rgba(233,182,90,.6), 0 6px 16px -8px rgba(0,0,0,.6);
+  transition-property: transform, background-color;
+  transition-duration: 150ms; transition-timing-function: ease-out;
+}
+.modo-navidad .nav-franja-btn:hover { background: #fff; }
+.modo-navidad .nav-franja-btn:active { transform: scale(.96); }
+.modo-navidad .nav-franja-btn:focus-visible { outline: 2px solid var(--nav-oro); outline-offset: 2px; }
+.modo-navidad .nav-franja-btn svg { color: #1da851; }
+@media (max-width: 600px) {
+  .modo-navidad .nav-franja { font-size: .84rem; }
+  .modo-navidad .nav-franja-int { flex-wrap: nowrap; gap: 10px; padding-top: 6px; padding-bottom: 6px; }
+  .modo-navidad .nav-franja-largo, .modo-navidad .nav-franja-btn-largo { display: none; }
+  .modo-navidad .nav-franja-btn { padding: 6px 12px; }
+}
+
+/* ---------- Guirnalda de luces sobre la portada ---------- */
+.modo-navidad .nav-guirnalda {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  height: 34px; overflow: hidden; pointer-events: none;
+  display: flex; justify-content: center;
+}
+.modo-navidad .nav-guirnalda i {
+  position: relative; flex: 0 0 64px; height: 34px;
+  /* tramo de cable colgante de 64 px: se repite sin costura */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='34' viewBox='0 0 64 34'%3E%3Cpath d='M0 3 Q32 22 64 3' fill='none' stroke='%232c3a22' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center top / 64px 34px;
+}
+.modo-navidad .nav-guirnalda i::before { /* casquillo */
+  content: ""; position: absolute; left: 50%; top: 11px;
+  width: 5px; height: 4px; margin-left: -2.5px; border-radius: 1px;
+  background: #3b3a2a;
+}
+.modo-navidad .nav-guirnalda i::after { /* bombillo */
+  content: ""; position: absolute; left: 50%; top: 14px;
+  width: 9px; height: 13px; margin-left: -4.5px;
+  border-radius: 50% 50% 48% 48% / 40% 40% 60% 60%;
+  background: var(--b, var(--nav-oro));
+  box-shadow: 0 0 6px 2px var(--g, var(--nav-brillo)), 0 0 16px 4px var(--g, var(--nav-brillo));
+  opacity: .95;
+}
+.modo-navidad .nav-guirnalda i:nth-child(4n+1) { --b: #f2c46b; --g: rgba(242,196,107,.55); }
+.modo-navidad .nav-guirnalda i:nth-child(4n+2) { --b: #d9573f; --g: rgba(217,87,63,.5); }
+.modo-navidad .nav-guirnalda i:nth-child(4n+3) { --b: #fff3d6; --g: rgba(255,243,214,.55); }
+.modo-navidad .nav-guirnalda i:nth-child(4n+4) { --b: #8fb36a; --g: rgba(143,179,106,.5); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .modo-navidad .nav-guirnalda i::after { animation: nav-titila 3.2s ease-in-out infinite; }
+  .modo-navidad .nav-guirnalda i:nth-child(3n+2)::after { animation-delay: -1.1s; }
+  .modo-navidad .nav-guirnalda i:nth-child(3n+3)::after { animation-delay: -2.2s; }
+}
+@keyframes nav-titila {
+  0%, 100% { opacity: .95; }
+  50%      { opacity: .5; }
+}
+
+/* ---------- Destellos (los crea navidad.js; nunca con menos movimiento) ---------- */
+.modo-navidad .nav-destellos {
+  position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none;
+}
+.modo-navidad .nav-destellos span {
+  position: absolute; top: -12px; left: var(--x, 50%);
+  width: var(--t, 3px); height: var(--t, 3px); border-radius: 50%;
+  background: #fff8e6; opacity: 0;
+  box-shadow: 0 0 6px rgba(255, 236, 190, .8);
+  animation: nav-cae var(--d, 12s) linear var(--r, 0s) infinite;
+  will-change: transform, opacity;
+}
+@keyframes nav-cae {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  12%  { opacity: var(--o, .55); }
+  85%  { opacity: var(--o, .55); }
+  100% { transform: translate3d(var(--v, 14px), 540px, 0); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modo-navidad .nav-destellos { display: none; }
+}
+
+/* ---------- Seccion «Temporada navidena» ---------- */
+.modo-navidad .nav-temporada {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(233,182,90,.22), transparent 60%),
+    rgba(253, 249, 239, .72);
+  border-bottom: 1px solid var(--linea);
+}
+.modo-navidad .nav-temporada .rotulo { color: var(--terracota); }
+.modo-navidad .nav-temporada .titulo-seccion { text-wrap: balance; }
+.modo-navidad .nav-temporada .entradilla { text-wrap: pretty; }
+.modo-navidad .nav-motivos {
+  list-style: none; padding: 0; margin: 0 auto 1.8rem;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  max-width: 760px;
+}
+.modo-navidad .nav-motivos li {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 999px;
+  background: var(--crema-clara); border: 1px solid var(--linea);
+  color: var(--verde-osc); font-weight: 600; font-size: .93rem;
+}
+.modo-navidad .nav-motivos svg { color: var(--mostaza-osc); flex: none; }
+.modo-navidad .nav-temporada .acciones {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+}
+.modo-navidad .nav-nota {
+  margin: 1.1rem auto 0; font-size: .9rem; color: var(--tinta-suave); text-wrap: pretty;
+}
+@media (max-width: 600px) {
+  .modo-navidad .nav-temporada { padding: 38px 0; }
+  .modo-navidad .nav-motivos { gap: 8px; margin-bottom: 1.4rem; }
+  .modo-navidad .nav-motivos li { padding: 6px 12px; font-size: .86rem; }
+  .modo-navidad .nav-temporada .entradilla { margin-bottom: 1.3rem; }
+}
+.modo-navidad .nav-ramas {
+  display: block; margin: 0 auto 1.2rem; color: var(--verde);
+}
+
+@media print {
+  .modo-navidad .nav-franja, .modo-navidad .nav-guirnalda, .modo-navidad .nav-destellos { display: none !important; }
+}
