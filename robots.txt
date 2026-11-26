@@ -7,4 +7,32 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
+User-agent: GPTBot
+Allow: /
+Disallow: /404.html
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /404.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /404.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /404.html
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /404.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /404.html
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /404.html
+
 Sitemap: https://albaniarestaurante.com/sitemap.xml
